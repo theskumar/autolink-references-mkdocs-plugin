@@ -25,7 +25,7 @@ plugins:
               target_url: https://jiracloud.com/PROJ-<num>
 ```
 
-- __reference_prefix__: This prefix appended by a number will generate a link any time it is found in an page.
+- __reference_prefix__: This prefix appended by a number will generate a link any time it is found in a page.
 - __target_url__: The URL must contain `<num>` for the reference number.
 
 ### An example
