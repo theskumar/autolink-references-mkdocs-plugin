@@ -1,7 +1,7 @@
 # Autolink References (MkDocs Plugin)
 
 This [mkdocs plugin](http://www.mkdocs.org/user-guide/plugins/)
-look in each MkDocs article for the presence of a references to tickets from issues
+look in each MkDocs article for the presence of a reference to tickets from issues
 trackers like Jira, Linear, etc and convert them to links that point to respective
 platforms:
 
