@@ -22,7 +22,8 @@ plugins:
             - reference_prefix: AF-
               target_url: https://linear.com/AF-<num>
             - reference_prefix: PROJ-
-              target_url: https://jiracloud.com/PROJ-<num>```
+              target_url: https://jiracloud.com/PROJ-<num>
+```
 
 - __reference_prefix__: This prefix appended by a number will generate a link any time it is found in an page.
 - __target_url__: The URL must contain `<num>` for the reference number.
