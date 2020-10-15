@@ -48,3 +48,9 @@ Changelog:
 - [AF-100](https://linear.com/AF-100): add new feature.
 
 ```
+
+## License
+
+MIT
+
+Built with ❤️ by [Saurabh Kumar](https://saurabh-kumar.com?ref=autolink-references-mkdocs-plugin)
