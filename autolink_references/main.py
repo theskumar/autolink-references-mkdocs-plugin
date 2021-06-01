@@ -7,16 +7,20 @@ def replace_autolink_references(markdown, reference_prefix, target_url):
     if "<num>" not in reference_prefix:
         reference_prefix = reference_prefix + "<num>"
 
-    target_url = target_url.replace("<num>", "\\1")
-
     find_regex = reference_prefix.replace("<num>", "([0-9]+)")
-    replace_regex = "[{}]({})".format(
-        reference_prefix.replace('<num>', '\\1'),
-        target_url
-    )
+    find_regex = "[\\[]?" + find_regex + "[\\]]?(\\(?.*\\)?)"
+
+    def ref_replace(matchobj):
+        if matchobj.group(2) == "(":
+            return matchobj.group(0)
+
+        return "[{}]({})".format(
+            reference_prefix.replace('<num>', matchobj.group(1)),
+            target_url.replace("<num>", matchobj.group(1))
+        )
 
     markdown = re.sub(find_regex,
-                      replace_regex,
+                      ref_replace,
                       markdown,
                       flags=re.IGNORECASE)
 

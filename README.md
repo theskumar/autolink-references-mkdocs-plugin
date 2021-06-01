@@ -49,6 +49,12 @@ Changelog:
 
 ```
 
+## Changelog
+
+### 0.2.0
+- Ignore already linked references.
+- Converts text `[AF-100]` to a linked version and removes the brackets `AF-100`
+
 ## License
 
 MIT

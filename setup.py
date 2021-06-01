@@ -10,7 +10,7 @@ with io.open(readme_path, encoding='utf-8') as f:
 
 setup(
     name='autolink-references-mkdocs-plugin',
-    version='0.1.0',
+    version='0.2.0',
     packages=['autolink_references'],
     url='https://github.com/theskumar/autolink-references-mkdocs-plugin',
     license='MIT',
