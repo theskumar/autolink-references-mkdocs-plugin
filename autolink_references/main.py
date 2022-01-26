@@ -8,36 +8,38 @@ def replace_autolink_references(markdown, reference_prefix, target_url):
         reference_prefix = reference_prefix + "<num>"
 
     find_regex = reference_prefix.replace("<num>", "(?P<num>[0-9]+)")
-    find_regex = "(?P<b>\\[)?(?P<text>" + find_regex + ")(?(b)\\])(?(b)(?:\\((?P<url>.*?)\\))?)"
+    find_regex = (
+        "(?P<b>\\[)?(?P<text>" + find_regex + ")(?(b)\\])(?(b)(?:\\((?P<url>.*?)\\))?)"
+    )
 
     def ref_replace(matchobj):
-        if matchobj.group('url'):
+        if matchobj.group("url"):
             return matchobj.group(0)
 
         return "[{}]({})".format(
-            reference_prefix.replace('<num>', matchobj.group('num')),
-            target_url.replace("<num>", matchobj.group('num'))
+            reference_prefix.replace("<num>", matchobj.group("num")),
+            target_url.replace("<num>", matchobj.group("num")),
         )
 
-    markdown = re.sub(find_regex,
-                      ref_replace,
-                      markdown,
-                      flags=re.IGNORECASE)
+    markdown = re.sub(find_regex, ref_replace, markdown, flags=re.IGNORECASE)
 
     return markdown
 
 
 class AutoLinkOption(config_options.OptionallyRequired):
-
     def run_validation(self, values):
         if not isinstance(values, list):
-            raise config_options.ValidationError('Expected a list of autolinks.')
+            raise config_options.ValidationError("Expected a list of autolinks.")
 
         for autolink in values:
             if "reference_prefix" not in autolink:
-                raise config_options.ValidationError("Expected a 'reference_prefix' in autolinks.")
+                raise config_options.ValidationError(
+                    "Expected a 'reference_prefix' in autolinks."
+                )
             if "target_url" not in autolink:
-                raise config_options.ValidationError("Expected a 'target_url' in autolinks.")
+                raise config_options.ValidationError(
+                    "Expected a 'target_url' in autolinks."
+                )
             if "<num>" not in autolink["target_url"]:
                 raise config_options.ValidationError("Missing '<num>' in 'target_url'.")
 
@@ -46,9 +48,7 @@ class AutoLinkOption(config_options.OptionallyRequired):
 
 class AutolinkReference(BasePlugin):
 
-    config_scheme = (
-        ('autolinks', AutoLinkOption(required=True)),
-    )
+    config_scheme = (("autolinks", AutoLinkOption(required=True)),)
 
     def on_page_markdown(self, markdown, **kwargs):
         """
@@ -61,6 +61,8 @@ class AutolinkReference(BasePlugin):
         :return: Modified markdown
         """
         for autolink in self.config["autolinks"]:
-            markdown = replace_autolink_references(markdown, autolink["reference_prefix"], autolink["target_url"])
+            markdown = replace_autolink_references(
+                markdown, autolink["reference_prefix"], autolink["target_url"]
+            )
 
         return markdown

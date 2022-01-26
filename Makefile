@@ -12,6 +12,11 @@ clean-pyc:
 	find . -name '*.pyo' -exec rm -f {} +
 	find . -name '*~' -exec rm -f {} +
 
+test:
+	pip install pytest
+	pip install -e .
+	pytest tests/
+
 release: sdist
 	twine check dist/*
 	twine upload dist/*
