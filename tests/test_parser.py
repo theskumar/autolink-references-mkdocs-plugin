@@ -17,4 +17,4 @@ def test_parser(test_input, expected):
     ref_prefix = "#<num>"
     target_url = "http://gh/<num>"
 
-    assert autolink(test_input, ref_prefix, target_url) == expected
+    assert autolink(test_input, ref_prefix, target_url, False) == expected

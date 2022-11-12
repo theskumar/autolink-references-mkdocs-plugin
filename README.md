@@ -23,10 +23,14 @@ plugins:
               target_url: https://linear.com/AF-<num>
             - reference_prefix: PROJ-
               target_url: https://jiracloud.com/PROJ-<num>
+            - reference_prefix: GIT@
+              target_url: https://github.com/<num>
+              look_for_alphanumeric_id: true
 ```
 
 - __reference_prefix__: This prefix appended by a number will generate a link any time it is found in a page.
 - __target_url__: The URL must contain `<num>` for the reference number.
+- __look_for_alphanumeric_id__: **(optional, default=false)** Allow values for `<num>` that are not only numeric but also alphanumeric including "-_/"
 
 ### An example
 
