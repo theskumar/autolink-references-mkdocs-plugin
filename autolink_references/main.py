@@ -15,29 +15,6 @@ def replace_autolink_references(markdown, ref_prefix, target_url):
     return markdown
 
 
-def areplace_autolink_references(markdown, reference_prefix, target_url):
-    if "<num>" not in reference_prefix:
-        reference_prefix = reference_prefix + "<num>"
-
-    find_regex = reference_prefix.replace("<num>", "(?P<num>[0-9]+)")
-    find_regex = (
-        "(?P<b>\\[)?(?P<text>" + find_regex + ")(?(b)\\])(?(b)(?:\\((?P<url>.*?)\\))?)"
-    )
-
-    def ref_replace(matchobj):
-        if matchobj.group("url"):
-            return matchobj.group(0)
-
-        return "[{}]({})".format(
-            reference_prefix.replace("<num>", matchobj.group("num")),
-            target_url.replace("<num>", matchobj.group("num")),
-        )
-
-    markdown = re.sub(find_regex, ref_replace, markdown, flags=re.IGNORECASE)
-
-    return markdown
-
-
 class AutoLinkOption(config_options.OptionallyRequired):
     def run_validation(self, values):
         if not isinstance(values, list):
