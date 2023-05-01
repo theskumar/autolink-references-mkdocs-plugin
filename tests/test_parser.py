@@ -45,6 +45,7 @@ ignore_already_linked = [
     ),
 ]
 
+# This test cases address #4. Reference style links should be ignored.
 ignore_ref_links = [
     ("TAG-<num>", "http://gh/<num>", "[TAG-456]", "[TAG-456]"),
     ("TAG-<num>", "http://gh/<num>", "[TAG-456][test456]", "[TAG-456][test456]"),
@@ -66,6 +67,7 @@ def test_parser(ref_prefix, target_url, test_input, expected):
     assert autolink(test_input, ref_prefix, target_url) == expected
 
 
+# This test address #5. It currently only checks for '#' before the link
 def test_with_attr_list():
     text = "## Feature 1 { #F-001 .class-feature }"
     ref_prefix = "F-<num>"
