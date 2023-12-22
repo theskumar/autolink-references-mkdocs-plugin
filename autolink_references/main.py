@@ -3,26 +3,15 @@ from mkdocs.plugins import BasePlugin
 from mkdocs.config import config_options
 
 
-def replace_autolink_references(markdown, reference_prefix, target_url):
-    if "<num>" not in reference_prefix:
-        reference_prefix = reference_prefix + "<num>"
-
-    find_regex = reference_prefix.replace("<num>", "(?P<num>[0-9]+)")
-    find_regex = (
-        "(?P<b>\\[)?(?P<text>" + find_regex + ")(?(b)\\])(?(b)(?:\\((?P<url>.*?)\\))?)"
+def replace_autolink_references(markdown, ref_prefix, target_url):
+    if "<num>" not in ref_prefix:
+        ref_prefix = ref_prefix + "<num>"
+    find_regex = re.compile(
+        r"(?<![#\[/])" + ref_prefix.replace(r"<num>", r"(?P<num>[-\w]+)")
     )
-
-    def ref_replace(matchobj):
-        if matchobj.group("url"):
-            return matchobj.group(0)
-
-        return "[{}]({})".format(
-            reference_prefix.replace("<num>", matchobj.group("num")),
-            target_url.replace("<num>", matchobj.group("num")),
-        )
-
-    markdown = re.sub(find_regex, ref_replace, markdown, flags=re.IGNORECASE)
-
+    linked_ref = rf"[{ref_prefix}](" + target_url + r")"
+    replace_text = linked_ref.replace(r"<num>", r"\g<num>")
+    markdown = re.sub(find_regex, replace_text, markdown, re.IGNORECASE)
     return markdown
 
 
