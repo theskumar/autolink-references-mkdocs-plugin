@@ -13,18 +13,16 @@ clean-pyc:
 	find . -name '*~' -exec rm -f {} +
 
 test:
-	pip install pytest
-	pip install -e .
-	pytest tests/
+	rye run pytest tests/
 
-release: sdist
-	twine check dist/*
-	twine upload dist/*
+release: build
+	rye publish
 
-release-test: sdist
-	twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+release-test: build
+	rye publish --repository testpypi --repository-url https://test.pypi.org/legacy/
 
-sdist: clean
-	pip install twine wheel -U
-	python setup.py sdist bdist_wheel
-	ls -l dist
+build: clean
+	rye build
+
+install:
+	rye sync
