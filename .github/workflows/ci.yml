@@ -8,8 +8,10 @@ jobs:
         python-version:
         - '3.x' # the latest available python version
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: sksat/setup-rye@v0.10.0
+    - run: make install
     - run: make test

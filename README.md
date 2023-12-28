@@ -51,6 +51,10 @@ Changelog:
 
 ## Changelog
 
+### 0.2.2 (2023-12-28)
+
+- Allow extended set for <num> and ignore ref style links, already linked items, and attr_list cases with '#' before the ref
+
 ### 0.2.0
 - Ignore already linked references.
 - Converts text `[AF-100]` to a linked version and removes the brackets `AF-100`
