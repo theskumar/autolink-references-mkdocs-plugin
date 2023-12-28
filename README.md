@@ -1,5 +1,8 @@
 # Autolink References (MkDocs Plugin)
 
+[![PyPI - Version](https://img.shields.io/pypi/v/autolink-references-mkdocs-plugin)](https://pypi.org/project/autolink-references-mkdocs-plugin/)
+
+
 This [mkdocs plugin](http://www.mkdocs.org/user-guide/plugins/)
 look in each MkDocs article for the presence of a reference to tickets from issues
 trackers like Jira, Linear, etc and convert them to links that point to respective
