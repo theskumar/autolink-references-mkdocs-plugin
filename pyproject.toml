@@ -11,7 +11,7 @@ dynamic = ["version"]
 dependencies = ["mkdocs"]
 
 keywords = [
-    'autolink',
+    'autolinks',
     'mkdocs',
     'regex',
 ]
@@ -32,7 +32,7 @@ classifiers=[
 ]
 
 [project.entry-points."mkdocs.plugins"]
-autolink_references = "autolink_references:AutolinkReference"
+"autolink_references" = "autolink_references:AutolinkReference"
 
 [project.urls]
 Documentation = "https://github.com/theskumar/autolink-references-mkdocs-plugin/tree/main#readme"
