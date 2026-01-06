@@ -11,7 +11,7 @@ def replace_autolink_references(markdown, ref_prefix, target_url):
     )
     linked_ref = rf"[{ref_prefix}](" + target_url + r")"
     replace_text = linked_ref.replace(r"<num>", r"\g<num>")
-    markdown = re.sub(find_regex, replace_text, markdown, re.IGNORECASE)
+    markdown = re.sub(find_regex, replace_text, markdown, count=0, flags=re.IGNORECASE)
     return markdown
 
 
